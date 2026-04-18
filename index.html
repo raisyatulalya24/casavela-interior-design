@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CasaVela</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">CasaVela</div>
+
+  <div class="nav-links">
+    <button onclick="showPage('homePage')">Home</button>
+    <button onclick="showPage('designPage')">Design</button>
+    <button onclick="showPage('galleryPage')">Gallery</button>
+    <button onclick="showPage('colorPage')">Colors</button>
+  </div>
+</div>
+
+<!-- ================= HOME ================= -->
+<div id="homePage" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="https://i.pinimg.com/736x/cf/e1/98/cfe1983360d914daef4fd5ae625b23e9.jpg">
+
+    <div class="hero-text">
+      <h1>Elevate your home with modern furniture & decor</h1>
+      <button onclick="showPage('designPage')">Start Design</button>
+    </div>
+  </section>
+
+  <!-- STYLE -->
+  <section>
+    <h2 class="section-title">Styles</h2>
+    <div id="styleContainer" class="style-slider"></div>
+  </section>
+
+  <!-- COLOR SECTION -->
+  <section class="color-section">
+    <div class="color-text">
+      <h2>Contemporary furniture & home decor</h2>
+      <p>
+        Discover curated color palettes designed to create harmony, warmth,
+        and a refined atmosphere in every corner of your home.
+      </p>
+      <button onclick="showPage('colorPage')">Explore Colors</button>
+    </div>
+
+    <div id="colorPreview" class="color-preview"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <p>Email: casavela@email.com</p>
+    <p>WhatsApp: 0812-4687-9843</p>
+    <p>Instagram: @casavela</p>
+  </section>
+
+</div>
+
+<!-- ================= DESIGN ================= -->
+<div id="designPage" class="page">
+
+  <!-- BACK -->
+  <button class="back-btn" onclick="showPage('homePage')">← Back</button>
+
+  <!-- CANVAS -->
+  <div id="room"></div>
+
+  <!-- TOOLS -->
+  <div class="design-tools">
+    <input type="file" id="uploadImg">
+    <button onclick="saveDesign()">Save to Gallery</button>
+    <button onclick="clearRoom()">Clear</button>
+    <button onclick="downloadDesign()">Download</button>
+  </div>
+
+  <!-- WARNING -->
+  <div class="warning">
+    ⚠ Gunakan gambar PNG (background sudah dihapus di remove.bg)
+  </div>
+
+</div>
+
+<!-- ================= GALLERY ================= -->
+<div id="galleryPage" class="page">
+  <h2 class="section-title">Gallery</h2>
+  <div id="gallery" class="gallery-grid"></div>
+</div>
+
+<!-- ================= COLOR PAGE ================= -->
+<div id="colorPage" class="page">
+  <h2 class="section-title">Color Palette</h2>
+  <div id="colorContainer"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

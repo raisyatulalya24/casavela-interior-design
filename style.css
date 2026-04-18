@@ -1,0 +1,363 @@
+/* ===== RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:sans-serif;
+}
+
+/* ===== BODY ===== */
+body{
+  background:#f5f0e6;
+  color:#4b2e2b;
+}
+
+/* ===== NAVBAR (FINAL FIX) ===== */
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  background: #6b4f3b;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 50px;
+  z-index: 999;
+
+  /* ACTIVE NAV */
+.active-nav{
+  background:#f5f0e6 !important;
+  color:#4b2e2b !important;
+}
+}
+
+/* LOGO */
+.logo{
+  color:#f5f0e6;
+  font-size:22px;
+  font-weight:700;
+}
+
+/* NAV LINKS */
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+/* NAV BUTTON */
+.nav-links button{
+  background:transparent;
+  border:none;
+  color:#f5f0e6;
+  font-weight:500;
+  cursor:pointer;
+  padding:8px 12px;
+  border-radius:6px;
+  transition:0.2s;
+}
+
+.nav-links button:hover{
+  background:rgba(255,255,255,0.15);
+}
+
+/* ===== PAGE ===== */
+.page{
+  display:none;
+  padding-top:70px;
+}
+
+.page.active{
+  display:block;
+}
+
+/* ===== HERO ===== */
+.hero{
+  margin-top: 20px;
+  width:100%;
+  height:33vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(70%);
+}
+
+.hero-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#fff;
+}
+
+.hero-text h1{
+  font-size:38px;
+}
+
+.hero-text button{
+  margin-top:10px;
+}
+
+/* ===== BUTTON GLOBAL ===== */
+button{
+  background:#f7e183;
+  color:#4b2e2b;
+  border:none;
+  padding:10px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.25s;
+}
+
+button:hover{
+  background:#e6dfd3;
+  transform:translateY(-2px);
+}
+
+/* ===== STYLE SLIDER ===== */
+#styleContainer{
+  display:flex;
+  overflow-x:auto;
+  gap:20px;
+  padding:30px;
+}
+
+#styleContainer::-webkit-scrollbar{
+  display:none;
+}
+
+.style-card{
+  min-width:250px;
+  max-width:250px;
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  flex-shrink:0;
+  transition:0.25s;
+}
+
+.style-card img{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+}
+
+.style-card h4{
+  padding:10px;
+}
+
+.style-card p{
+  padding:0 10px 15px;
+  font-size:13px;
+  color:#666;
+}
+
+.style-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* ===== COLOR SECTION (HOME) ===== */
+.color-section{
+  margin:40px;
+  background:#fff;
+  border-radius:20px;
+  padding:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* kiri */
+.color-text{
+  width:45%;
+}
+
+.color-text p{
+  margin:10px 0;
+  font-size:14px;
+  color:#555;
+}
+
+/* kanan FIX MENDATAR */
+#colorPreview{
+  width:50%;
+  display:flex;
+  justify-content:space-between; /* 🔥 fix horizontal */
+  align-items:center;
+}
+
+/* color card */
+.color-box{
+  width:80px;
+  height:120px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* ===== COLOR PAGE ===== */
+#colorContainer{
+  padding:30px;
+}
+
+.color-row{
+  margin-bottom:30px;
+}
+
+.color-row h3{
+  margin-bottom:10px;
+}
+
+.color-list{
+  display:flex; /* 🔥 fix horizontal */
+  gap:15px;
+}
+
+/* ===== DESIGN PAGE ===== */
+#room{
+  width:90%;
+  height:400px;
+  margin:20px auto;
+  background:#fff;
+  border-radius:15px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* item */
+.item{
+  position:absolute;
+  cursor:grab;
+}
+
+.item img{
+  width:100%;
+  pointer-events:none;
+}
+
+.item {
+  transition: transform 0.1s;
+}
+
+.item:active {
+  transform: scale(1.03);
+  cursor: grabbing;
+}
+
+/* delete button */
+.delete-btn{
+  position:absolute;
+  top:5px;
+  right:5px;
+  background:#4b2e2b;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:20px;
+  height:20px;
+  font-size:12px;
+}
+
+/* resize */
+.resize{
+  width:12px;
+  height:12px;
+  background:#4b2e2b;
+  position:absolute;
+  right:0;
+  bottom:0;
+  cursor:se-resize;
+}
+
+/* DESIGN BUTTON */
+#designPage button{
+  background:#6b4f3b;
+  color:#f5f0e6;
+}
+
+#designPage button:hover{
+  background:#8a6a52;
+}
+
+/* tools */
+.design-tools{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin:20px;
+}
+
+/* warning */
+.warning{
+  width:90%;
+  margin:10px auto;
+  background:#6b4f3b;
+  color:#f5f0e6;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+  font-size:13px;
+}
+
+/* ===== GALLERY ===== */
+#gallery{
+  padding:20px;
+}
+
+#gallery img{
+  width:200px;
+  margin:10px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* ===== CONTACT ===== */
+.contact{
+  background:#332215;
+  color:#f5f0e6;
+  padding:20px;
+  text-align:center;
+  font-size:14px;
+}
+
+.contact p{
+  margin:5px 0;
+}
+/* BACKGROUND KHUSUS */
+.bg-item{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
+.bg-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* ITEM DI ATAS BACKGROUND */
+.item{
+  position:absolute;
+  cursor:grab;
+  z-index:2; /* 🔥 SELALU DI ATAS */
+}
