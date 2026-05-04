@@ -361,3 +361,6 @@ button:hover{
   cursor:grab;
   z-index:2; /* 🔥 SELALU DI ATAS */
 }
+#room {
+  touch-action: none;
+}
