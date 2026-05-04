@@ -357,6 +357,18 @@ button:hover{
   height:100%;
   object-fit:cover;
 }
+/* MATIIN SEMUA GESTURE HP YANG GANGGU */
+#room, .item, .item *{
+  touch-action: none !important;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* biar ga ke-zoom / ngecil */
+body{
+  touch-action: manipulation;
+}
 
 /* ITEM DI ATAS BACKGROUND */
 .item{
