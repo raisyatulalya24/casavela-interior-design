@@ -234,6 +234,9 @@ button:hover{
   position:relative;
   overflow:hidden;
 }
+#room{
+  touch-action: none;
+}
 
 /* item */
 .item{
@@ -361,6 +364,4 @@ button:hover{
   cursor:grab;
   z-index:2; /* 🔥 SELALU DI ATAS */
 }
-#room {
-  touch-action: none;
-}
+
