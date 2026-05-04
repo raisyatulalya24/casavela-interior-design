@@ -6,52 +6,6 @@ window.showPage = function(id){
   document.getElementById(id).classList.add("active");
 };
 
-// ================= DATA =================
-const styleData = {
-  Scandinavian:{
-    desc:"Interior terang, bersih, dominan putih & kayu.",
-    colors:["#ffffff","#e8efe6","#d4cfc7","#a3b18a","#f8f5e6"],
-    img:"https://i.pinimg.com/736x/a3/c7/ad/a3c7adbe639be91cf325c7497792d8a4.jpg"
-  },
-  Japanese:{
-    desc:"Minimal, tenang, natural.",
-    colors:["#f5f5dc","#c2b280","#8b6f47","#a2884b","#672205"],
-    img:"https://i.pinimg.com/736x/d8/26/4d/d8264dceb9afce2514000d9612725574.jpg"
-  }
-};
-
-// ================= RENDER STYLE =================
-const styleContainer = document.getElementById("styleContainer");
-
-if(styleContainer){
-  Object.keys(styleData).forEach(style=>{
-    const c = document.createElement("div");
-    c.className="style-card";
-
-    c.innerHTML=`
-      <img src="${styleData[style].img}">
-      <h4>${style}</h4>
-      <p>${styleData[style].desc}</p>
-    `;
-
-    styleContainer.appendChild(c);
-  });
-}
-
-// ================= COLOR PREVIEW =================
-const preview = document.getElementById("colorPreview");
-
-if(preview){
-  const firstStyle = Object.values(styleData)[0];
-
-  firstStyle.colors.slice(0,4).forEach(c=>{
-    const box=document.createElement("div");
-    box.className="color-box";
-    box.style.background=c;
-    preview.appendChild(box);
-  });
-}
-
 // ================= DESIGN SYSTEM =================
 const room = document.getElementById("room");
 const upload = document.getElementById("uploadImg");
@@ -97,7 +51,7 @@ if(upload){
     wrapper.appendChild(resize);
     room.appendChild(wrapper);
 
-    // ===== DRAG START (MOUSE) =====
+    // ===== MOUSE DRAG =====
     wrapper.addEventListener("mousedown", (e)=>{
       if(e.target === resize || e.target === del) return;
 
@@ -107,38 +61,39 @@ if(upload){
       offsetX = e.clientX - rect.left;
       offsetY = e.clientY - rect.top;
 
+      isResizing = false;
       wrapper.style.zIndex = Date.now();
     });
 
-wrapper.addEventListener("touchstart", (e)=>{
-  e.preventDefault(); // 🔥 INI KUNCI UTAMA
+    // ===== TOUCH DRAG (HP) =====
+    wrapper.addEventListener("touchstart", (e)=>{
+      if(e.target.classList.contains("resize")) return;
 
-  const touch = e.touches[0];
+      const touch = e.touches[0];
 
-  activeItem = wrapper;
+      activeItem = wrapper;
 
-  const rect = wrapper.getBoundingClientRect();
-  offsetX = touch.clientX - rect.left;
-  offsetY = touch.clientY - rect.top;
+      const rect = wrapper.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
 
-  isResizing = false;
+      isResizing = false;
+      wrapper.style.zIndex = Date.now();
+    });
 
-  wrapper.style.zIndex = Date.now();
-});
-
-    // ===== RESIZE START =====
+    // ===== RESIZE =====
     resize.addEventListener("mousedown", (e)=>{
       e.stopPropagation();
       activeItem = wrapper;
       isResizing = true;
     });
 
-  resize.addEventListener("touchstart", (e)=>{
-  e.preventDefault(); // 🔥 penting
+    resize.addEventListener("touchstart", (e)=>{
+      e.stopPropagation();
+      activeItem = wrapper;
+      isResizing = true;
+    });
 
-  activeItem = wrapper;
-  isResizing = true;
-});
   });
 }
 
@@ -166,8 +121,6 @@ document.addEventListener("mousemove", (e)=>{
 document.addEventListener("touchmove", (e)=>{
   if(!activeItem) return;
 
-  e.preventDefault(); // 🔥 WAJIB
-
   const touch = e.touches[0];
   const roomRect = room.getBoundingClientRect();
 
@@ -183,10 +136,8 @@ document.addEventListener("touchmove", (e)=>{
     activeItem.style.left = x + "px";
     activeItem.style.top = y + "px";
   }
-}, { passive: false }); // 🔥 SUPER PENTING
 
-  e.preventDefault();
-});
+}, { passive:false });
 
 // ===== RELEASE =====
 document.addEventListener("mouseup", ()=>{
