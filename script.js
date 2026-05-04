@@ -110,18 +110,21 @@ if(upload){
       wrapper.style.zIndex = Date.now();
     });
 
-    // ===== DRAG START (TOUCH) =====
-    wrapper.addEventListener("touchstart", (e)=>{
-      const touch = e.touches[0];
+wrapper.addEventListener("touchstart", (e)=>{
+  e.preventDefault(); // 🔥 INI KUNCI UTAMA
 
-      activeItem = wrapper;
+  const touch = e.touches[0];
 
-      const rect = wrapper.getBoundingClientRect();
-      offsetX = touch.clientX - rect.left;
-      offsetY = touch.clientY - rect.top;
+  activeItem = wrapper;
 
-      wrapper.style.zIndex = Date.now();
-    });
+  const rect = wrapper.getBoundingClientRect();
+  offsetX = touch.clientX - rect.left;
+  offsetY = touch.clientY - rect.top;
+
+  isResizing = false;
+
+  wrapper.style.zIndex = Date.now();
+});
 
     // ===== RESIZE START =====
     resize.addEventListener("mousedown", (e)=>{
@@ -130,11 +133,12 @@ if(upload){
       isResizing = true;
     });
 
-    resize.addEventListener("touchstart", (e)=>{
-      e.stopPropagation();
-      activeItem = wrapper;
-      isResizing = true;
-    });
+  resize.addEventListener("touchstart", (e)=>{
+  e.preventDefault(); // 🔥 penting
+
+  activeItem = wrapper;
+  isResizing = true;
+});
   });
 }
 
@@ -162,6 +166,8 @@ document.addEventListener("mousemove", (e)=>{
 document.addEventListener("touchmove", (e)=>{
   if(!activeItem) return;
 
+  e.preventDefault(); // 🔥 WAJIB
+
   const touch = e.touches[0];
   const roomRect = room.getBoundingClientRect();
 
@@ -177,6 +183,7 @@ document.addEventListener("touchmove", (e)=>{
     activeItem.style.left = x + "px";
     activeItem.style.top = y + "px";
   }
+}, { passive: false }); // 🔥 SUPER PENTING
 
   e.preventDefault();
 });
