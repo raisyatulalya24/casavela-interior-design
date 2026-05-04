@@ -193,8 +193,27 @@ if(upload){
       wrapper.style.zIndex = Date.now(); // bring to front
     });
 
+    // TOUCH START (HP)
+    wrapper.addEventListener("touchstart", (e)=>{
+      const touch = e.touches[0];
+
+      activeItem = wrapper;
+
+      const rect = wrapper.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
+
+      wrapper.style.zIndex = Date.now();
+    });
+
     // ===== RESIZE =====
     resize.addEventListener("mousedown", (e)=>{
+      e.stopPropagation();
+      activeItem = wrapper;
+      isResizing = true;
+    });
+
+    resize.addEventListener("touchstart", (e)=>{
       e.stopPropagation();
       activeItem = wrapper;
       isResizing = true;
@@ -307,4 +326,30 @@ window.downloadDesign = function(){
     link.click();
     document.body.removeChild(link);
   });
+  // ===== TOUCH SUPPORT (HP FIX) =====
+document.addEventListener("touchmove", (e)=>{
+  if(!activeItem) return;
+
+  const touch = e.touches[0];
+  const roomRect = room.getBoundingClientRect();
+
+  if(isResizing){
+    let newWidth = touch.clientX - activeItem.getBoundingClientRect().left;
+    if(newWidth < 60) newWidth = 60;
+
+    activeItem.style.width = newWidth + "px";
+  }else{
+    let x = touch.clientX - roomRect.left - offsetX;
+    let y = touch.clientY - roomRect.top - offsetY;
+
+    activeItem.style.left = x + "px";
+    activeItem.style.top = y + "px";
+  }
+});
+
+// RELEASE TOUCH
+document.addEventListener("touchend", ()=>{
+  activeItem = null;
+  isResizing = false;
+});
 };
